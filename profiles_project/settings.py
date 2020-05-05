@@ -122,3 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Configure Django project to user the created user profile (customed) instead of the one provided by Django:
+
+AUTH_USER_MODEL = 'profiles_api.UserProfile'
+
+
+# Create a Django migration file
