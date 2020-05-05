@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 
+### A superuser has admin access and full control
 
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
@@ -13,7 +14,7 @@ class UserProfileManager(BaseUserManager):
             raise ValueError('User must have an email address')
 
         email = self.normalize_email(email)
-        user = sel.model(email=email, name=name)
+        user = self.model(email=email, name=name)
 
         user.set_password(password) # hash the password
         user.save(using=self._db) # save the user model in a database
@@ -29,8 +30,6 @@ class UserProfileManager(BaseUserManager):
         user.save(using=self._db)
 
         return user
-
-
 
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
@@ -56,6 +55,3 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         """Return string representation of our user"""
         return self.email
-
-
-### A superuser has admin access and full control
